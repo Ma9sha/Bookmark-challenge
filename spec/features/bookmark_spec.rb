@@ -11,3 +11,12 @@ feature 'viewing bookmarks' do
     expect(page).to have_content("http://askjeeves.com")
   end
 end
+
+feature "add new bookmarks" do
+  scenario 'allows users to add a new bookmark' do
+    visit('/bookmarks')
+    fill_in :urlname, with: "http://bbc.co.uk"
+    click_on("Add")
+    expect(page).to have_content("http://bbc.co.uk")
+    end
+  end
