@@ -1,0 +1,6 @@
+<form action="/bookmarks/<%=@found.id%>/update" method="POST">
+  <input type="hidden" name="_method" value="PATCH">
+  <input type="text" name="urlname" value="<%=@found.url%>">
+  <input type="text" name="title" value="<%=@found.title%>">
+  <input type="submit" value="Update">
+  </form>

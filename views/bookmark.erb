@@ -1,12 +1,27 @@
-
-<ul>
-<% @bookmark.each do |bookmark|%>
-  <li>
-  <a href="<%= bookmark['url'] %>">  <%= bookmark['title'] %>
-  </a>
-  </li>
+<table>
+<tr>
+  <th>ID</th>
+  <th>Title</th>
+  <th>Delete</th>
+  <th>Update</th>
+  </tr>
+  <% @bookmark.each do |bookmark|%>
+  <tr>
+  <td><%= bookmark.id %></td>
+  <td><a href="<%= bookmark.url %>">  <%= bookmark.title %></a></td>
+  <td><form action="/bookmarks/<%=bookmark.id%>" method="POST">
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete <%=bookmark.title%>">
+  </form>
+  </td>
+  <td><form action="/bookmarks/<%=bookmark.id%>/update" method="GET">
+  <input type="submit" value="Update <%=bookmark.title%>">
+  </form>
+  </td>
+  </tr>
   <% end%>
-  </ul>
+</table>
+  
 
   <div>
   <form action='/bookmarks' method="POST">
