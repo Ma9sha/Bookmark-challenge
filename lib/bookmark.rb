@@ -5,14 +5,18 @@ class Book
 # attr_reader :bookmarks
 
   def self.all
+  list = []
   connect = connection()   
   result = connect.exec("SELECT * FROM bookmarks;")
-  result.map {|bookmark| bookmark['url']}
+  result.each do |bookmark| 
+    list << bookmark
+  end
+  return list
   end
 
-  def self.add_bookmark(bookmark)
+  def self.add_bookmark(bookmark, title)
     connect = connection
-    connect.exec("Insert into bookmarks(url) values ('#{bookmark}');")
+    connect.exec("Insert into bookmarks(url, title) values ('#{bookmark}','#{title}');")
   end
 
   private
